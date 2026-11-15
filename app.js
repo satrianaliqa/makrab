@@ -101,7 +101,7 @@ const FAQ_ITEMS = [
   {
     category: 'Konsep & Acara',
     q: 'Apa dress code untuk peserta Makrab MICE 2026?',
-    a: 'Peserta mengenakan dress code bertema <strong>Tahanan / Sipir Lapas</strong>, yaitu outfit bernuansa <strong>oranye tahanan</strong> (kaos/celana oranye atau putih-oranye), atau gaya <strong>sipir/polisi</strong> (hitam/biru gelap). Referensi visual lengkap bisa dilihat di Slide 3 &amp; 4 Proposal Deck di atas.',
+    a: 'Peserta mengenakan dress code bertema <strong>Tahanan / Narapidana</strong>, yaitu outfit bernuansa <strong>oranye tahanan</strong> (kaos/celana oranye atau putih-oranye). Referensi visual lengkap bisa dilihat di Slide 3 &amp; 4 Proposal Deck di atas.',
   },
   {
     category: 'Transportasi',
@@ -206,9 +206,9 @@ function renderFacilities() {
   ).join('');
 }
 
-// Render Galeri (8 awal agar ringan, tombol untuk tampilkan semua 45)
+// Render Galeri (4 awal di mobile, 8 awal di desktop agar ringan; tombol untuk tampilkan semua 45)
 let showAllPhotos = false;
-const INITIAL_PHOTO_COUNT = 8;
+const INITIAL_PHOTO_COUNT = window.innerWidth <= 640 ? 4 : 8;
 
 function renderGallery() {
   const grid = document.getElementById('gallery-grid');
@@ -350,10 +350,7 @@ function renderRundown() {
   const tabs = document.getElementById('rundown-tabs');
   const grid = document.getElementById('rundown-grid');
   if (tabs && grid) {
-    tabs.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-day]');
-      if (!btn) return;
-      const day = btn.dataset.day;
+    const applyDayFilter = (day) => {
       tabs.querySelectorAll('[data-day]').forEach((b) => {
         const active = b.dataset.day === day;
         b.classList.toggle('is-active', active);
@@ -363,6 +360,16 @@ function renderRundown() {
       grid.querySelectorAll('[data-day-col]').forEach((col) => {
         col.hidden = day !== 'all' && col.dataset.dayCol !== day;
       });
+    };
+
+    if (window.innerWidth <= 640) {
+      applyDayFilter('day1');
+    }
+
+    tabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-day]');
+      if (!btn) return;
+      applyDayFilter(btn.dataset.day);
     });
 
     grid.addEventListener('click', (e) => {
@@ -570,6 +577,17 @@ document.addEventListener('DOMContentLoaded', () => {
     showAllPhotos = !showAllPhotos;
     renderGallery();
   });
+
+  const toggleFacilitiesBtn = document.getElementById('toggle-facilities-btn');
+  const facilitiesGrid = document.getElementById('facilities-grid');
+  if (toggleFacilitiesBtn && facilitiesGrid) {
+    toggleFacilitiesBtn.addEventListener('click', () => {
+      const expanded = facilitiesGrid.classList.toggle('is-expanded');
+      toggleFacilitiesBtn.textContent = expanded
+        ? 'Ringkas Fasilitas'
+        : 'Tampilkan Semua 14 Fasilitas';
+    });
+  }
 
   document.getElementById('gallery-grid').addEventListener('click', (e) => {
     const btn = e.target.closest('.gallery-item');
