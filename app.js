@@ -104,7 +104,7 @@ const FAQ_ITEMS = [
   {
     category: 'Registrasi & Oprec',
     q: 'Apakah Google Form pendaftaran peserta sudah bersifat final atau hanya digunakan untuk memperoleh estimasi jumlah peserta?',
-    a: 'Untuk sementara, Google Form pendaftaran peserta digunakan sebagai <strong>pendataan awal</strong> untuk memperoleh estimasi jumlah mahasiswa yang berminat mengikuti Makrab. Di dalam formulir juga tersedia pilihan bagi mahasiswa yang belum dapat atau tidak berencana mengikuti kegiatan beserta kolom alasannya sebagai bahan pertimbangan perencanaan panitia. Status final formulir tetap akan dikonfirmasi kembali kepada PO/VPO.',
+    a: 'Untuk sementara, Google Form pendaftaran peserta (<a href="https://bit.ly/MakrabMICE_Tahanan" target="_blank" rel="noopener noreferrer">bit.ly/MakrabMICE_Tahanan</a>) digunakan sebagai <strong>pendataan awal</strong> untuk memperoleh estimasi jumlah mahasiswa yang berminat mengikuti Makrab. Di dalam formulir juga tersedia pilihan bagi mahasiswa yang belum dapat atau tidak berencana mengikuti kegiatan beserta kolom alasannya sebagai bahan pertimbangan perencanaan panitia. Status final formulir tetap akan dikonfirmasi kembali kepada PO/VPO.',
   },
   {
     category: 'Registrasi & Oprec',
