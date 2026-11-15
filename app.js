@@ -324,7 +324,7 @@ function showToast(message) {
   }, 2400);
 }
 
-// Render Rundown
+// Render Rundown + Day Tabs + Locked Mystery Click
 function renderRundown() {
   const renderList = (items, targetId) => {
     const el = document.getElementById(targetId);
@@ -332,7 +332,7 @@ function renderRundown() {
     el.innerHTML = items
       .map(
         (item) => `
-      <div class="timeline-item ${item.locked ? 'is-locked' : ''}">
+      <div class="timeline-item ${item.locked ? 'is-locked' : ''}" ${item.locked ? 'role="button" tabindex="0" title="Klik untuk cek status"' : ''}>
         <span class="timeline-time">${item.time}</span>
         <div>
           <span class="timeline-title">${item.title}</span>
@@ -346,6 +346,65 @@ function renderRundown() {
 
   renderList(RUNDOWN_DAY1, 'rundown-day1');
   renderList(RUNDOWN_DAY2, 'rundown-day2');
+
+  const tabs = document.getElementById('rundown-tabs');
+  const grid = document.getElementById('rundown-grid');
+  if (tabs && grid) {
+    tabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-day]');
+      if (!btn) return;
+      const day = btn.dataset.day;
+      tabs.querySelectorAll('[data-day]').forEach((b) => {
+        const active = b.dataset.day === day;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', String(active));
+      });
+      grid.classList.toggle('is-single', day !== 'all');
+      grid.querySelectorAll('[data-day-col]').forEach((col) => {
+        col.hidden = day !== 'all' && col.dataset.dayCol !== day;
+      });
+    });
+
+    grid.addEventListener('click', (e) => {
+      if (e.target.closest('.is-locked')) {
+        showToast('STATUS: CLASSIFIED — Tunggu kejutan dari panitia!');
+      }
+    });
+  }
+}
+
+const SLIDE_TITLES = [
+  'Cover — MICE IN THE CELL',
+  'Latar Belakang (MICELL)',
+  'Dress Code — Tahanan & Sipir',
+  'What To Wear — Referensi Outfit',
+  'Referensi Lapas (Lokasi Vila)',
+  'Schedule Timeline — 01 Absensi Narapidana',
+  'Schedule Timeline — 02–04 Day 1',
+  'Schedule Timeline — 05–07 Malam Keakraban',
+  'Schedule Timeline — Day 2 Pagi & Pulang',
+  'Closing — Thank You',
+];
+
+// Scroll Progress Bar
+function initScrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  let ticking = false;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+        bar.style.transform = `scaleX(${progress})`;
+        ticking = false;
+      });
+    },
+    { passive: true }
+  );
 }
 
 // Lazy PDF.js Proposal Slide Viewer
@@ -395,6 +454,11 @@ function initProposalViewer() {
     if (!pdfDoc) return;
     prevBtn.disabled = currentPage <= 1;
     nextBtn.disabled = currentPage >= pdfDoc.numPages;
+    const titleEl = document.getElementById('pdf-slide-title');
+    if (titleEl) {
+      const label = SLIDE_TITLES[currentPage - 1] || 'Slide Proposal';
+      titleEl.textContent = `Slide ${currentPage} / ${pdfDoc.numPages} — ${label}`;
+    }
     pillsContainer.querySelectorAll('.pdf-pill').forEach((btn) => {
       const pageNum = Number(btn.dataset.page);
       btn.classList.toggle('is-active', pageNum === currentPage);
@@ -447,6 +511,25 @@ function initProposalViewer() {
     if (pill) renderPage(Number(pill.dataset.page));
   });
 
+  let pdfTouchX = 0;
+  canvas.addEventListener(
+    'touchstart',
+    (e) => {
+      pdfTouchX = e.changedTouches[0].screenX;
+    },
+    { passive: true }
+  );
+  canvas.addEventListener(
+    'touchend',
+    (e) => {
+      if (!pdfDoc) return;
+      const diff = e.changedTouches[0].screenX - pdfTouchX;
+      if (diff < -40 && currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
+      if (diff > 40 && currentPage > 1) renderPage(currentPage - 1);
+    },
+    { passive: true }
+  );
+
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -465,6 +548,7 @@ function initProposalViewer() {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
+  initScrollProgress();
   renderRundown();
   initProposalViewer();
   renderFacilities();
