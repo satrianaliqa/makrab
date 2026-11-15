@@ -66,38 +66,75 @@ const GALLERY_FILES = [
   'WhatsApp Image 2026-11-15 at 22.29.04.jpeg',
 ];
 
+const FAQ_CATEGORIES = [
+  'Semua',
+  'Transportasi',
+  'Tanggal & Konsumsi',
+  'Lokasi & Vila',
+  'Registrasi & Oprec',
+  'Administrasi',
+];
+
 const FAQ_ITEMS = [
   {
-    q: 'Di mana lokasi akomodasi Makrab MICE 2026?',
-    a: 'Makrab MICE 2026 direncanakan bertempat di <strong>Villa Sinar Alam 1</strong> yang berlokasi di Jl. Raya Puncak KM. 83, Leuwimalang, Cisarua, Tugu Utara, Kecamatan Cisarua, Kabupaten Bogor, Jawa Barat 16750. Kamu bisa langsung cek titik lokasinya melalui <a href="https://maps.app.goo.gl/AQ5XF8oaE5TLhgju7" target="_blank" rel="noopener noreferrer">Google Maps Villa Sinar Alam 1</a>.',
+    category: 'Transportasi',
+    q: 'Apakah transportasi menuju lokasi Makrab disediakan oleh panitia atau peserta harus menggunakan kendaraan pribadi?',
+    a: 'Saat ini PO/VPO sedang mengupayakan penyediaan transportasi bersama bagi peserta, salah satunya melalui pencarian bus atau alternatif transportasi kolektif lainnya. Namun, hal ini juga perlu mempertimbangkan anggaran agar biaya transportasi tidak membuat HTM menjadi terlalu mahal dan tetap <em>affordable</em> bagi seluruh peserta. Apabila ada peserta yang memiliki koneksi atau rekomendasi penyedia transportasi, silakan menghubungi panitia untuk membantu proses pencarian.',
   },
   {
-    q: 'Berapa kapasitas vila dan jumlah kamarnya?',
-    a: 'Villa Sinar Alam 1 memiliki kapasitas <strong>hingga 80 orang</strong> dengan bangunan 3 lantai, 12 kamar tidur, dan 14 kamar mandi.',
+    category: 'Transportasi',
+    q: 'Apabila pada akhirnya peserta harus menggunakan kendaraan pribadi, bagaimana dengan peserta yang tidak memiliki kendaraan atau keberatan membawa kendaraan pribadi?',
+    a: 'Hal ini masih menjadi salah satu pertimbangan panitia. Kami memahami bahwa tidak semua peserta memiliki kendaraan pribadi atau dapat menggunakannya untuk menuju lokasi. Oleh karena itu, penyediaan transportasi kolektif masih terus diupayakan sebagai salah satu solusi agar seluruh peserta dapat mengikuti kegiatan tanpa terkendala transportasi. Keputusan mengenai skema transportasi akan diinformasikan setelah proses pertimbangan dan perencanaan anggaran selesai.',
   },
   {
-    q: 'Kapan tanggal pelaksanaan Makrab MICE 2026?',
-    a: 'Periode rencana pelaksanaan berada di rentang <strong>18–23 Januari 2027</strong>. Untuk tanggal pelaksanaan finalnya saat ini masih menunggu konfirmasi resmi dari panitia.',
+    category: 'Tanggal & Konsumsi',
+    q: 'Kapan perkiraan tanggal pelaksanaan Makrab? Apakah sudah terdapat tanggal atau opsi tanggal yang dapat dipertimbangkan?',
+    a: 'Untuk sementara, pelaksanaan Makrab direncanakan berada dalam rentang <strong>18–23 Januari 2027</strong>. Rentang tanggal tersebut mempertimbangkan kalender akademik PNJ, yaitu periode libur semester pada <strong>18–29 Januari 2027</strong>. Meskipun demikian, tanggal pastinya masih akan disesuaikan dengan kesiapan panitia dan kebutuhan teknis kegiatan.',
   },
   {
+    category: 'Administrasi',
+    q: 'Apakah panitia akan menyediakan surat pertanggungjawaban (SPJ), surat izin resmi, atau surat yang mencantumkan penanggung jawab kegiatan?',
+    a: 'Terkait surat izin perkuliahan, pada dasarnya tidak diperlukan karena kegiatan direncanakan berlangsung pada masa libur semester. Sementara itu, perlu dipahami bahwa Makrab ini merupakan kegiatan yang diinisiasi oleh Angkatan MICE 2026 dan bukan merupakan agenda resmi PNJ, sehingga penerbitan surat resmi atas nama institusi perlu mempertimbangkan ketentuan dan persetujuan pihak kampus.<br><br>Namun, apabila yang dimaksud adalah <strong>surat pemberitahuan atau surat informasi kegiatan untuk orang tua/wali</strong>, panitia akan mengusahakan penyediaannya agar orang tua memiliki pegangan informasi kegiatan termasuk penanggung jawabnya. Adapun mengenai SPJ atau dokumen pertanggungjawaban kegiatan masih perlu dikoordinasikan lebih lanjut dengan PO/VPO.',
+  },
+  {
+    category: 'Registrasi & Oprec',
+    q: 'Mengapa Open Recruitment (Oprec) volunteer dan Open Registration (Oreg) peserta dilaksanakan secara bersamaan? Mengapa tidak Oprec terlebih dahulu?',
+    a: 'Hal ini merupakan bagian dari strategi perencanaan panitia. Kami perlu memperoleh gambaran awal mengenai jumlah mahasiswa yang berminat mengikuti Makrab terlebih dahulu agar dapat menentukan kebutuhan volunteer pada setiap divisi secara proporsional. Mengingat volunteer yang bertugas juga berasal dari mahasiswa MICE 2026, jumlah panitia perlu disesuaikan dengan jumlah peserta agar komposisinya tetap seimbang dan rekrutmen sesuai kebutuhan aktual acara.',
+  },
+  {
+    category: 'Registrasi & Oprec',
+    q: 'Apakah Google Form pendaftaran peserta sudah bersifat final atau hanya digunakan untuk memperoleh estimasi jumlah peserta?',
+    a: 'Untuk sementara, Google Form pendaftaran peserta digunakan sebagai <strong>pendataan awal</strong> untuk memperoleh estimasi jumlah mahasiswa yang berminat mengikuti Makrab. Di dalam formulir juga tersedia pilihan bagi mahasiswa yang belum dapat atau tidak berencana mengikuti kegiatan beserta kolom alasannya sebagai bahan pertimbangan perencanaan panitia. Status final formulir tetap akan dikonfirmasi kembali kepada PO/VPO.',
+  },
+  {
+    category: 'Registrasi & Oprec',
+    q: 'Apakah pendaftaran volunteer sudah dibuka?',
+    a: 'Hingga saat ini, Google Form pendaftaran volunteer <strong>belum dibuka atau dipublikasikan</strong>. Informasi mengenai pembukaan pendaftaran volunteer akan disampaikan oleh panitia setelah tahap pendataan awal peserta dan perencanaan kebutuhan setiap divisi selesai dilakukan.',
+  },
+  {
+    category: 'Tanggal & Konsumsi',
     q: 'Berapa biaya HTM (Harga Tiket Masuk) peserta?',
-    a: 'Nominal final HTM saat ini masih menunggu informasi resmi dari panitia. Pengumuman akan segera disampaikan setelah perhitungan anggaran selesai.',
+    a: 'Nominal final HTM saat ini masih menunggu informasi resmi dari panitia. Perhitungan anggaran (termasuk opsi transportasi kolektif) masih disusun agar HTM tetap <em>affordable</em> bagi seluruh peserta.',
   },
   {
+    category: 'Tanggal & Konsumsi',
     q: 'Bagaimana skema konsumsi selama kegiatan berlangsung?',
     a: 'Panitia sedang menyiapkan kebutuhan konsumsi peserta. Untuk sementara, skema yang diinformasikan adalah <strong>2 kali makan</strong>. Rincian pembagian waktu makan dan daftar menu akan diinformasikan lebih lanjut.',
   },
   {
-    q: 'Apakah transportasi menuju lokasi disediakan panitia?',
-    a: 'Terkait transportasi peserta, saat ini masih dalam tahap pengupayaan dan koordinasi oleh panitia. Bagi yang membawa kendaraan pribadi, vila menyediakan area parkir dengan kapasitas hingga 10 mobil.',
+    category: 'Lokasi & Vila',
+    q: 'Di mana lokasi akomodasi Makrab MICE 2026?',
+    a: 'Makrab MICE 2026 direncanakan bertempat di <strong>Villa Sinar Alam 1</strong> yang berlokasi di Jl. Raya Puncak KM. 83, Leuwimalang, Cisarua, Tugu Utara, Kecamatan Cisarua, Kabupaten Bogor, Jawa Barat 16750. Kamu bisa langsung cek titik lokasinya melalui <a href="https://maps.app.goo.gl/AQ5XF8oaE5TLhgju7" target="_blank" rel="noopener noreferrer">Google Maps Villa Sinar Alam 1</a>.',
   },
   {
-    q: 'Apa saja fasilitas hiburan dan rekreasi yang ada di vila?',
-    a: 'Vila berada di area private dan dilengkapi dengan kolam renang private, meja biliar, TV dan karaoke, serta Free Wi-Fi.',
+    category: 'Lokasi & Vila',
+    q: 'Berapa kapasitas vila, jumlah kamar, dan area parkirnya?',
+    a: 'Villa Sinar Alam 1 memiliki kapasitas <strong>hingga 80 orang</strong> dengan bangunan 3 lantai, 12 kamar tidur, 14 kamar mandi, serta area parkir berkapasitas hingga 10 mobil.',
   },
   {
-    q: 'Apakah tersedia dapur, peralatan makan, dan fasilitas BBQ?',
-    a: 'Ya, tersedia 3 dapur beserta peralatannya, peralatan makan lengkap, peralatan BBQ, serta 3 ruang tamu nyaman dan ruang keluarga.',
+    category: 'Lokasi & Vila',
+    q: 'Apa saja fasilitas hiburan, rekreasi, dan dapur yang tersedia di vila?',
+    a: 'Vila berada di area private dan dilengkapi kolam renang private, meja biliar, TV dan karaoke, Free Wi-Fi, 3 ruang tamu nyaman, ruang keluarga, 3 dapur beserta peralatannya, peralatan makan lengkap, serta peralatan BBQ.',
   },
 ];
 
@@ -190,17 +227,34 @@ function stepLightbox(delta) {
   openLightbox(currentPhotoIndex + delta);
 }
 
-// Render FAQ & Search
+// Render FAQ, Filter & Search
+let activeFaqCategory = 'Semua';
+
+function renderFaqFilters() {
+  const container = document.getElementById('faq-filters');
+  container.innerHTML = FAQ_CATEGORIES.map(
+    (cat) => `
+    <button type="button" class="filter-pill ${cat === activeFaqCategory ? 'is-active' : ''}" data-category="${cat}" role="tab" aria-selected="${cat === activeFaqCategory}">
+      ${cat}
+    </button>
+  `
+  ).join('');
+}
+
 function renderFaq(query = '') {
   const list = document.getElementById('faq-list');
   const empty = document.getElementById('faq-empty');
   const normalized = query.trim().toLowerCase();
 
-  const filtered = FAQ_ITEMS.filter(
-    (item) =>
+  const filtered = FAQ_ITEMS.filter((item) => {
+    const matchCategory = activeFaqCategory === 'Semua' || item.category === activeFaqCategory;
+    const matchQuery =
+      !normalized ||
       item.q.toLowerCase().includes(normalized) ||
-      item.a.toLowerCase().includes(normalized)
-  );
+      item.a.toLowerCase().includes(normalized) ||
+      item.category.toLowerCase().includes(normalized);
+    return matchCategory && matchQuery;
+  });
 
   if (filtered.length === 0) {
     list.innerHTML = '';
@@ -214,7 +268,10 @@ function renderFaq(query = '') {
       (item, idx) => `
     <div class="faq-item ${idx === 0 && !normalized ? 'is-open' : ''}">
       <button type="button" class="faq-question" aria-expanded="${idx === 0 && !normalized ? 'true' : 'false'}">
-        <span>${item.q}</span>
+        <span class="faq-question-text">
+          <span class="faq-cat-badge">${item.category}</span>
+          <span>${item.q}</span>
+        </span>
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
@@ -244,7 +301,18 @@ function showToast(message) {
 document.addEventListener('DOMContentLoaded', () => {
   renderFacilities();
   renderGallery();
+  renderFaqFilters();
   renderFaq();
+
+  const faqSearchInput = document.getElementById('faq-search');
+
+  document.getElementById('faq-filters').addEventListener('click', (e) => {
+    const pill = e.target.closest('.filter-pill');
+    if (!pill) return;
+    activeFaqCategory = pill.dataset.category;
+    renderFaqFilters();
+    renderFaq(faqSearchInput.value);
+  });
 
   document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
     showAllPhotos = !showAllPhotos;

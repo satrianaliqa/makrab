@@ -491,6 +491,12 @@ h2 {
   color: var(--text);
 }
 
+.plan-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
 /* Facilities Grid */
 .facilities-grid {
   display: grid;
@@ -606,6 +612,62 @@ h2 {
 .faq-search:focus {
   outline: 2px solid var(--primary);
   outline-offset: -1px;
+}
+
+.faq-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.filter-pill {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filter-pill.is-active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.faq-cat-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  background-color: var(--primary-soft);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+.faq-question-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.faq-disclaimer {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background-color: var(--accent-soft);
+  border: 1px solid #eed6b8;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  color: #7c4712;
 }
 
 .faq-list {
