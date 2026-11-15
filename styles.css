@@ -206,6 +206,304 @@ h1 {
   max-width: 54ch;
 }
 
+.hero-tagline {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+/* Dark Event Card in Hero */
+.event-card {
+  background-color: #181c1a;
+  color: #f4f1ea;
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid #2d3531;
+  box-shadow: var(--shadow-md);
+}
+
+.event-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.event-badge {
+  background-color: #d96b27;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.event-sub {
+  font-size: 0.78rem;
+  color: #a9b4ad;
+  font-weight: 600;
+}
+
+.event-card-title {
+  margin: 0 0 14px;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.event-meta-list {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-meta-list li {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #2a312d;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.event-meta-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.meta-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #d96b27;
+  font-weight: 700;
+}
+
+.event-meta-list strong {
+  font-size: 0.96rem;
+  color: #fff;
+}
+
+.event-meta-list small {
+  font-size: 0.8rem;
+  color: #a9b4ad;
+}
+
+.event-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-accent-dark {
+  background-color: #d96b27;
+  color: #fff;
+}
+
+.btn-accent-dark:hover {
+  background-color: #c25b1c;
+}
+
+.btn-ghost-light {
+  background-color: transparent;
+  color: #f4f1ea;
+  border-color: #3a443f;
+}
+
+.btn-ghost-light:hover {
+  border-color: #d96b27;
+  color: #fff;
+}
+
+/* Dress Code & Rundown */
+.dresscode-banner {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid #d96b27;
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.dresscode-banner h3 {
+  margin: 6px 0 4px;
+  font-size: 1.1rem;
+}
+
+.dresscode-banner p {
+  margin: 0;
+  font-size: 0.93rem;
+  color: var(--text-muted);
+}
+
+.rundown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.rundown-col {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.rundown-day-title {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--primary);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.timeline-item.is-locked {
+  border-style: dashed;
+  border-color: #d96b27;
+  background-color: #fdf5ef;
+}
+
+.timeline-time {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #d96b27;
+  background-color: #fdf3e7;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.timeline-title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.timeline-desc {
+  display: block;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* PDF Proposal Slide Viewer */
+.pdf-viewer-card {
+  background-color: #181c1a;
+  border: 1px solid #2d3531;
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow-md);
+}
+
+.pdf-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #0f1210;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdf-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.pdf-loading {
+  position: absolute;
+  color: #d5dcd8;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 16px;
+}
+
+.pdf-controls {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pdf-page-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.pdf-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #3a443f;
+  background-color: #232926;
+  color: #d5dcd8;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.pdf-pill:hover {
+  border-color: #d96b27;
+  color: #fff;
+}
+
+.pdf-pill.is-active {
+  background-color: #d96b27;
+  border-color: #d96b27;
+  color: #fff;
+}
+
+.facilities-wrap {
+  margin-top: 28px;
+}
+
+.sub-heading {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -868,7 +1166,8 @@ h2 {
 
 /* Responsive */
 @media (max-width: 900px) {
-  .hero-grid {
+  .hero-grid,
+  .rundown-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }

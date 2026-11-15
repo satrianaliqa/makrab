@@ -66,8 +66,25 @@ const GALLERY_FILES = [
   'WhatsApp Image 2026-11-15 at 22.29.04.jpeg',
 ];
 
+const RUNDOWN_DAY1 = [
+  { time: '12.00 – 12.30', title: '01. Absensi Narapidana', desc: 'Registrasi dan dokumentasi peserta' },
+  { time: '15.10 – 16.10', title: '02. Operasi Pesta Air', desc: 'Estafet aer tapi pake palalu' },
+  { time: '16.10 – 17.30', title: '03. Kerusuhan Lapas', desc: 'Main benteng ke menteng' },
+  { time: '17.30 – 19.30', title: '04. ISHOMA', desc: 'Istirahat, sholat, madang' },
+  { time: '19.30 – 20.30', title: '05. Inspeksi Dadakan', desc: 'Tak kenal maka tak follow' },
+  { time: '20.30 – 21.30', title: '06. Pencarian Barang Bukti', desc: '[LOCKED] ???', locked: true },
+  { time: '21.30 – Teler', title: '07. Pesta Napi', desc: 'Free time sampe modar' },
+];
+
+const RUNDOWN_DAY2 = [
+  { time: '07.00 – 07.30', title: '08. Aura Lu Merah!', desc: 'Senam pagi biar kaga butek aura lu' },
+  { time: '07.30 – 09.30', title: '09. Ketangkep Basah', desc: 'Main air sampe becek' },
+  { time: '09.30 – 11.00', title: '10. Vonis Selesai', desc: 'Mandi, makan, mpulang' },
+];
+
 const FAQ_CATEGORIES = [
   'Semua',
+  'Konsep & Acara',
   'Transportasi',
   'Tanggal & Konsumsi',
   'Lokasi & Vila',
@@ -76,6 +93,16 @@ const FAQ_CATEGORIES = [
 ];
 
 const FAQ_ITEMS = [
+  {
+    category: 'Konsep & Acara',
+    q: 'Apa konsep dan tema Makrab MICE 2026?',
+    a: 'Mengusung tema <strong>MICE IN THE CELL</strong> (<em>One Cell, One Night, One Memory</em> — A Concept from 1A Class). Konsep ini menggambarkan mahasiswa baru sebagai bagian dari satu sel yang dihuni berbagai karakter; meski berbeda, setiap mahasiswa saling bekerja sama dan bersatu agar bisa bertahan dan bergerak bersama.',
+  },
+  {
+    category: 'Konsep & Acara',
+    q: 'Apa dress code untuk peserta Makrab MICE 2026?',
+    a: 'Peserta mengenakan dress code bertema <strong>Tahanan / Sipir Lapas</strong>, yaitu outfit bernuansa <strong>oranye tahanan</strong> (kaos/celana oranye atau putih-oranye), atau gaya <strong>sipir/polisi</strong> (hitam/biru gelap). Referensi visual lengkap bisa dilihat di Slide 3 &amp; 4 Proposal Deck di atas.',
+  },
   {
     category: 'Transportasi',
     q: 'Apakah transportasi menuju lokasi Makrab disediakan oleh panitia atau peserta harus menggunakan kendaraan pribadi?',
@@ -297,8 +324,149 @@ function showToast(message) {
   }, 2400);
 }
 
+// Render Rundown
+function renderRundown() {
+  const renderList = (items, targetId) => {
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    el.innerHTML = items
+      .map(
+        (item) => `
+      <div class="timeline-item ${item.locked ? 'is-locked' : ''}">
+        <span class="timeline-time">${item.time}</span>
+        <div>
+          <span class="timeline-title">${item.title}</span>
+          <span class="timeline-desc">${item.desc}</span>
+        </div>
+      </div>
+    `
+      )
+      .join('');
+  };
+
+  renderList(RUNDOWN_DAY1, 'rundown-day1');
+  renderList(RUNDOWN_DAY2, 'rundown-day2');
+}
+
+// Lazy PDF.js Proposal Slide Viewer
+function initProposalViewer() {
+  const section = document.getElementById('proposal');
+  const canvas = document.getElementById('pdf-canvas');
+  const loading = document.getElementById('pdf-loading');
+  const prevBtn = document.getElementById('pdf-prev');
+  const nextBtn = document.getElementById('pdf-next');
+  const pillsContainer = document.getElementById('pdf-page-pills');
+  if (!section || !canvas) return;
+
+  let pdfDoc = null;
+  let currentPage = 1;
+  let rendering = false;
+  let initialized = false;
+
+  async function renderPage(num) {
+    if (!pdfDoc || rendering) return;
+    rendering = true;
+    currentPage = num;
+    loading.hidden = false;
+    loading.textContent = `Memuat slide ${num} / ${pdfDoc.numPages}...`;
+
+    try {
+      const page = await pdfDoc.getPage(num);
+      const containerWidth = canvas.parentElement.clientWidth || 960;
+      const baseViewport = page.getViewport({ scale: 1 });
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const scale = (containerWidth / baseViewport.width) * dpr;
+      const viewport = page.getViewport({ scale });
+
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      loading.hidden = true;
+    } catch {
+      loading.textContent = 'Gagal merender slide. Silakan klik "Buka / Unduh PDF" di atas.';
+    } finally {
+      rendering = false;
+      updateControls();
+    }
+  }
+
+  function updateControls() {
+    if (!pdfDoc) return;
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= pdfDoc.numPages;
+    pillsContainer.querySelectorAll('.pdf-pill').forEach((btn) => {
+      const pageNum = Number(btn.dataset.page);
+      btn.classList.toggle('is-active', pageNum === currentPage);
+    });
+  }
+
+  function buildPills(total) {
+    pillsContainer.innerHTML = Array.from({ length: total }, (_, i) => i + 1)
+      .map(
+        (n) => `
+      <button type="button" class="pdf-pill ${n === 1 ? 'is-active' : ''}" data-page="${n}" aria-label="Slide ${n}">
+        ${n}
+      </button>
+    `
+      )
+      .join('');
+  }
+
+  function loadPdfJsAndDoc() {
+    if (initialized) return;
+    initialized = true;
+
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    script.onload = async () => {
+      try {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        pdfDoc = await window.pdfjsLib.getDocument('assets/proposal-mice-in-the-cell.pdf').promise;
+        buildPills(pdfDoc.numPages);
+        renderPage(1);
+      } catch {
+        loading.textContent = 'Tidak dapat memuat preview PDF. Klik "Buka / Unduh PDF" di atas.';
+      }
+    };
+    script.onerror = () => {
+      loading.textContent = 'Preview PDF butuh koneksi internet. Klik "Buka / Unduh PDF" di atas.';
+    };
+    document.head.appendChild(script);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (pdfDoc && currentPage > 1) renderPage(currentPage - 1);
+  });
+  nextBtn.addEventListener('click', () => {
+    if (pdfDoc && currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
+  });
+  pillsContainer.addEventListener('click', (e) => {
+    const pill = e.target.closest('.pdf-pill');
+    if (pill) renderPage(Number(pill.dataset.page));
+  });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          loadPdfJsAndDoc();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '250px' }
+    );
+    observer.observe(section);
+  } else {
+    loadPdfJsAndDoc();
+  }
+}
+
 // Init
 document.addEventListener('DOMContentLoaded', () => {
+  renderRundown();
+  initProposalViewer();
   renderFacilities();
   renderGallery();
   renderFaqFilters();
