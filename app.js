@@ -136,7 +136,7 @@ const FAQ_ITEMS = [
   {
     category: 'Registrasi & Oprec',
     q: 'Apakah pendaftaran volunteer sudah dibuka?',
-    a: 'Hingga saat ini, Google Form pendaftaran volunteer <strong>belum dibuka atau dipublikasikan</strong>. Informasi mengenai pembukaan pendaftaran volunteer akan disampaikan oleh panitia setelah tahap pendataan awal peserta dan perencanaan kebutuhan setiap divisi selesai dilakukan.',
+    a: 'Pendaftaran volunteer <strong>sudah dibuka</strong>. Silakan isi Google Form <a href="https://bit.ly/MakrabMICE_SipirLapas" target="_blank" rel="noopener noreferrer">Open Volunteer</a> untuk mendaftar.',
   },
   {
     category: 'Tanggal & Konsumsi',
