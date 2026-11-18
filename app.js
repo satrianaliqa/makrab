@@ -106,7 +106,7 @@ const FAQ_ITEMS = [
   {
     category: 'Transportasi',
     q: 'Apakah transportasi menuju lokasi Makrab disediakan oleh panitia atau peserta harus menggunakan kendaraan pribadi?',
-    a: 'Saat ini PO/VPO sedang mengupayakan penyediaan transportasi bersama bagi peserta, salah satunya melalui pencarian bus atau alternatif transportasi kolektif lainnya. Namun, hal ini juga perlu mempertimbangkan anggaran agar biaya transportasi tidak membuat HTM menjadi terlalu mahal dan tetap <em>affordable</em> bagi seluruh peserta. Apabila ada peserta yang memiliki koneksi atau rekomendasi penyedia transportasi, silakan menghubungi panitia untuk membantu proses pencarian.',
+    a: 'PO/VPO berencana mengadakan <strong>tronton/bus kolektif</strong> bagi peserta yang membutuhkan. Untuk menentukan kapasitas yang pas (tidak kebanyakan atau kekurangan), peserta <strong>wajib mengisi pendataan terbaru</strong> di <a href="https://bit.ly/MakrabMICE_DataAkomodasi" target="_blank" rel="noopener noreferrer">bit.ly/MakrabMICE_DataAkomodasi</a> untuk memilih keberangkatan (motor, mobil, dijemput, atau ikut sewa tronton/bus).<br><br>Bagi peserta yang memilih ikut tronton/bus akan ada <strong>biaya tambahan</strong>. Nominal HTM maupun paket HTM + Tronton akan diinformasikan menyusul.',
   },
   {
     category: 'Transportasi',

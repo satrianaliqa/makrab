@@ -186,6 +186,51 @@ section[id] {
   cursor: not-allowed;
 }
 
+/* Urgent Top Announcement Banner */
+.urgent-banner {
+  background: linear-gradient(90deg, rgba(232, 93, 26, 0.2) 0%, rgba(220, 38, 38, 0.16) 100%);
+  border-bottom: 2px solid var(--primary);
+  padding: 12px 0;
+}
+
+.urgent-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.urgent-banner-copy {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1 1 520px;
+}
+
+.urgent-badge {
+  flex-shrink: 0;
+  background-color: var(--crimson);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.urgent-banner-copy p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #f3f4f6;
+  line-height: 1.45;
+}
+
+.urgent-cta {
+  flex-shrink: 0;
+}
+
 /* Hero with subtle CSS prison-bar & ember gradient (zero GPU lag) */
 .hero {
   position: relative;
